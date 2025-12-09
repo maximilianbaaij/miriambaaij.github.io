@@ -1,33 +1,689 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine GitHub Pages Seite</title>
+    
+    <!-- SEO & Metadaten -->
+    <title>Mimi Baaij | The Soft January Reset</title>
+    <meta name="description" content="Dein sanfter Start ins Jahr. Ein begleitetes Programm für Solopreneurinnen & Mütter. Starte deinen Soft Reset.">
+    <meta name="author" content="Miriam Baaij - Online Business & Coaching">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="The Soft January Reset | Mimi Baaij">
+    <meta property="og:description" content="Keine Diät, sondern ein Ritual. Hol dir deine Energie zurück.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=1000&auto=format&fit=crop">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon (SVG encoded directly) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#FFFCF8',
+                        lavender: '#E6E6FA',
+                        butter: '#FEF0C6',
+                        forest: '#1A3C34',
+                        forestLight: '#2C554B',
+                        sand: '#E7E5E4'
+                    },
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['Outfit', 'sans-serif'],
+                        script: ['Pinyon Script', 'cursive'],
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(26, 60, 52, 0.05)',
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.02)',
+                        'glow': '0 0 30px rgba(254, 240, 198, 0.5)'
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+        body { background-color: #FFFCF8; color: #1A3C34; }
+        .glass { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.8); }
+        .img-cover { object-fit: cover; width: 100%; height: 100%; transition: transform 0.7s ease; }
+        .hover-zoom:hover .img-cover { transform: scale(1.03); }
+        
+        /* Smooth Aura */
+        .aura-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; z-index: 0; animation: float 10s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        
+        /* Reveal on Scroll Class */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(26, 60, 52, 0.1);
+            border-left-color: #1A3C34;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
         }
-        h1 {
-            color: #333;
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Willkommen auf meiner Webseite! 🚀</h1>
-        <p>Das ist meine erste Webseite, gehostet auf GitHub Pages.</p>
-        <p>Du kannst diese Seite beliebig anpassen und erweitern.</p>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-butter selection:text-forest">
+
+    <!-- Background Auras -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+        <div class="aura-orb bg-lavender w-[500px] h-[500px] bottom-[-100px] left-[-100px]"></div>
     </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-50 py-6 px-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto reveal">
+        <div class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3">
+            <span class="font-serif italic text-2xl tracking-tight text-forest">Miriam Baaij</span>
+            <span class="text-[10px] uppercase tracking-widest text-forest/60 border-l border-forest/20 pl-3 ml-1 md:ml-0 leading-tight">The Soft January Reset</span>
+        </div>
+        <a href="#warteliste" class="hidden md:inline-block text-sm uppercase tracking-widest text-forest border-b border-forest/30 pb-1 hover:border-forest transition-all">
+            Start: Januar
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative z-10 pt-16 pb-32 px-6 text-center max-w-4xl mx-auto">
+        <div class="reveal delay-100">
+            <span class="inline-block py-1 px-4 rounded-full bg-white/50 border border-forest/10 text-xs font-sans tracking-widest uppercase mb-6 text-forest/70">
+                Community Journey 2025
+            </span>
+        </div>
+
+        <!-- BILD SKALIERUNG: max-w-2xl -> max-w-lg (macht es kleiner/kompakter) -->
+        <div class="mb-10 rounded-[50px] overflow-hidden shadow-soft mx-auto max-w-lg reveal delay-200 hover-zoom">
+            <!-- HIER BILD AUSTAUSCHEN für GitHub Pages: src="images/dein-bild.jpg" -->
+            <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=1000&auto=format&fit=crop" 
+                 alt="Frau entspannt im weichen Licht" 
+                 class="w-full h-auto object-cover" 
+                 loading="eager">
+        </div>
+        
+        <h1 class="font-serif text-5xl md:text-7xl mb-6 leading-[1.1] text-forest reveal delay-300">
+            Ein Januar,<br>
+            <span class="font-script text-6xl md:text-8xl text-forestLight opacity-90 block mt-2 transform -rotate-2">voller Sanftheit</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-forest/70 leading-relaxed mb-10 max-w-2xl mx-auto reveal delay-400">
+            Stell dir vor, du startest das Jahr nicht mit Verzicht, sondern mit Fülle. 
+            Eine <strong>6-wöchige Reise</strong> zu zellulärer Klarheit, tiefer Ruhe und neuer Energie. 
+            Geführt, gehalten und gemeinsam.
+        </p>
+
+        <div class="reveal delay-500">
+            <a href="#warteliste" class="inline-block px-10 py-4 bg-forest text-white rounded-full text-lg font-medium shadow-soft hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                Auf die Warteliste
+            </a>
+            <p class="mt-4 text-xs text-forest/40 uppercase tracking-widest">Unverbindlich & Limitiert</p>
+        </div>
+    </header>
+
+    <!-- The Problem (Empathy) -->
+    <section class="relative z-10 py-24 bg-white/40 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <!-- BILD SKALIERUNG: h-[500px] -> h-80 md:h-96 (automatische Anpassung) -->
+            <div class="relative h-80 md:h-96 rounded-t-[100px] rounded-b-[20px] overflow-hidden shadow-soft bg-sand reveal hover-zoom">
+                <!-- HIER BILD AUSTAUSCHEN für GitHub Pages: src="images/dein-bild.jpg" -->
+                <img src="https://images.unsplash.com/photo-1531169509526-f8f1fdaa4a67?q=80&w=1000&auto=format&fit=crop" 
+                     alt="Tiefe Ruhe und Erholung" 
+                     class="img-cover opacity-90"
+                     loading="lazy">
+                <div class="absolute inset-0 bg-forest/10"></div>
+            </div>
+            <div class="reveal">
+                <h2 class="font-serif text-4xl mb-6 text-forest">Warum "nur Schlafen" <br><span class="italic text-forestLight">nicht mehr reicht</span></h2>
+                <div class="w-12 h-1 bg-butter mb-8"></div>
+                <p class="mb-6 text-forest/80 leading-relaxed">
+                    Du kennst das Gefühl: Du schläfst, aber du wachst nicht erholt auf. Das liegt daran, dass Erschöpfung oft nicht im Kopf, sondern tiefer sitzt. In deinen Zellen.
+                </p>
+                <p class="mb-6 text-forest/80 leading-relaxed">
+                    Nach einem Dezember voller "Geben" und "Machen" ist dein Stoffwechsel oft im Stressmodus. Wir nutzen den Januar nicht für eine Diät (Stress!), sondern für einen Reset des Nervensystems und der Zellen.
+                </p>
+                <ul class="space-y-4 mt-8 font-serif text-lg text-forest">
+                    <li class="flex items-center"><span class="w-2 h-2 rounded-full bg-butter mr-4"></span> Kein Hungern.</li>
+                    <li class="flex items-center"><span class="w-2 h-2 rounded-full bg-butter mr-4"></span> Keine komplizierten Rezepte.</li>
+                    <li class="flex items-center"><span class="w-2 h-2 rounded-full bg-butter mr-4"></span> Voller Fokus auf Nährstoffe.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Ritual (The Process) -->
+    <section class="relative z-10 py-24 max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="font-serif text-4xl mb-4 text-forest">Dein Ritual</h2>
+            <p class="text-forest/60 max-w-2xl mx-auto">
+                Der cellRESET ist eine langfristige Reise zu dir selbst. 
+                In unserer Gruppe begleiten wir dich intensiv durch die <strong>2 Wochen Vorbereitung</strong> und die magischen <strong>4 Wochen der Aktivierung</strong>.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-6">
+            <!-- Phase 1 (Focus) -->
+            <div class="glass p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-500 border-2 border-butter/50 relative reveal delay-100">
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-butter text-forest text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm whitespace-nowrap">2 Wochen • Begleitet</div>
+                <span class="block font-script text-4xl text-forestLight mb-2">01</span>
+                <h3 class="font-serif text-lg mb-3">Vorbereitung</h3>
+                <p class="text-sm text-forest/70">Wir kommen an, leeren die Speicher sanft und bereiten den Körper vor.</p>
+            </div>
+            
+            <!-- Phase 2 (Focus & Core) -->
+            <div class="glass p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-500 relative group border-2 border-butter/50 reveal delay-200">
+                <div class="absolute inset-0 bg-butter/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-butter text-forest text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm whitespace-nowrap">4 Wochen • Begleitet</div>
+                <span class="block font-script text-4xl text-forestLight mb-2 relative z-10">02</span>
+                <h3 class="font-serif text-lg mb-3 relative z-10">Aktivieren</h3>
+                <p class="text-sm text-forest/70 relative z-10">Das Herzstück. Transformation pur. Maximale Nährstoffdichte für deine Zellen.</p>
+            </div>
+
+            <!-- Phase 3 (Outlook) -->
+            <div class="glass p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-500 opacity-80 reveal delay-300">
+                <span class="block font-script text-4xl text-forestLight mb-2 text-forestLight/50">03</span>
+                <h3 class="font-serif text-lg mb-3 text-forest/80">Stabilisieren</h3>
+                <p class="text-sm text-forest/60">Der Weg danach. Integration neuer Gewohnheiten und Festigung der Balance.</p>
+            </div>
+
+            <!-- Phase 4 (Outlook) -->
+            <div class="glass p-8 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-500 opacity-80 reveal delay-400">
+                <span class="block font-script text-4xl text-forestLight mb-2 text-forestLight/50">04</span>
+                <h3 class="font-serif text-lg mb-3 text-forest/80">Lifestyle</h3>
+                <p class="text-sm text-forest/60">Dein neues Normal. Energie und Leichtigkeit werden langfristig zum Alltag.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Energy Compass -->
+    <section class="relative z-10 py-24 max-w-3xl mx-auto px-6">
+        <div class="glass p-8 md:p-12 rounded-[3rem] shadow-soft text-center relative overflow-hidden reveal">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-butter via-lavender to-butter opacity-50"></div>
+            
+            <div class="relative z-10">
+                <span class="inline-block py-1 px-3 bg-lavender/30 rounded-full text-forestLight text-xs tracking-widest uppercase mb-4">Gemini AI Powered ✨</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-forest">Dein Energie-Kompass</h2>
+                <p class="text-forest/70 mb-8 max-w-md mx-auto">
+                    Wie fühlst du dich in diesem Moment? Erzähl es uns, und erhalte ein persönliches Mantra und ein 2-Minuten-Ritual für sofortige Ruhe.
+                </p>
+
+                <div class="flex flex-col gap-4 max-w-md mx-auto">
+                    <input type="text" id="userFeeling" placeholder="z.B. erschöpft, zerstreut, voller To-Dos..." 
+                           class="w-full bg-white/70 border border-forest/10 rounded-xl px-4 py-4 focus:outline-none focus:border-forest/30 font-sans text-forest placeholder-forest/30 text-center shadow-inner transition-all">
+                    
+                    <button onclick="generateRitual()" id="generateBtn" class="w-full bg-forest text-white font-medium py-4 rounded-xl hover:bg-forestLight transition-colors shadow-lg flex items-center justify-center gap-2 group">
+                        <span>Schenk mir einen Impuls</span>
+                        <span class="group-hover:rotate-12 transition-transform duration-500">✨</span>
+                    </button>
+                </div>
+
+                <!-- Result Area -->
+                <div id="aiResult" class="hidden mt-10 text-left bg-white/60 rounded-2xl p-8 border border-white fade-in">
+                    <div id="loadingSpinner" class="hidden flex flex-col items-center justify-center py-4">
+                        <div class="spinner mb-3"></div>
+                        <p class="text-sm text-forest/50 italic animate-pulse">Verbinde mit der Intuition...</p>
+                    </div>
+                    
+                    <div id="resultContent" class="hidden">
+                        <!-- Content injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="relative z-10 py-24 bg-forest text-paper rounded-[3rem] mx-4 mb-20 overflow-hidden reveal">
+        <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px]"></div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative">
+            <h2 class="font-serif text-4xl md:text-5xl mb-12">Du gehst nicht allein.</h2>
+            
+            <div class="grid md:grid-cols-3 gap-12 text-left">
+                <div class="reveal delay-100">
+                    <div class="font-script text-3xl text-butter mb-4">Der Plan</div>
+                    <p class="text-white/70 font-light">
+                        Ein wunderschön gestaltetes Workbook (Digital), das dich an die Hand nimmt. Rezepte, Listen, Ablauf.
+                    </p>
+                </div>
+                <div class="reveal delay-200">
+                    <div class="font-script text-3xl text-butter mb-4">Die Nährstoffe</div>
+                    <p class="text-white/70 font-light">
+                        Das bewährte Nährstoff-Konzept (Basis-Versorgung), um Lücken zu füllen und Heißhunger zu stillen.
+                    </p>
+                </div>
+                <div class="reveal delay-300">
+                    <div class="font-script text-3xl text-butter mb-4">Der Circle</div>
+                    <p class="text-white/70 font-light">
+                        Eine exklusive Begleitgruppe. Tägliche Impulse, Motivation und ein Raum, in dem du "echt" sein darfst.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Mimi -->
+    <section id="about" class="relative z-10 py-24 max-w-6xl mx-auto px-6 reveal">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <!-- Text Side -->
+            <div class="order-2 md:order-1">
+                <span class="text-xs font-sans uppercase tracking-widest text-forest/40 mb-4 block">Deine Begleiterin</span>
+                <h2 class="font-serif text-4xl mb-6 text-forest">Hi, ich bin <br><span class="font-script text-5xl text-forestLight">Mimi</span></h2>
+                <div class="prose text-forest/80 leading-relaxed space-y-6 font-light">
+                    <p>
+                        Mit meiner Arbeit habe ich eine Welt geschaffen, die Frauen daran erinnert, dass sie mehr sind als die Summe ihrer To-Do-Listen.
+                    </p>
+                    <p>
+                        Als Mentorin und Coach begleite ich Frauen und <strong>Solopreneurinnen</strong> dabei, wieder in ihre volle Schöpferkraft zu kommen. Ich weiß, dass wahre Energie – egal ob für das Familienleben oder den beruflichen Erfolg – immer innen beginnt: In gesunden Zellen und einem regulierten Nervensystem.
+                    </p>
+                    <p>
+                        Der "Soft January Reset" ist mir deshalb so wichtig. Er ist das Fundament. Er ist deine Erlaubnis, dich selbst wieder an erste Stelle zu setzen, damit du danach mit Klarheit und Leichtigkeit all das bewegen kannst, was dir am Herzen liegt.
+                    </p>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="flex gap-4 mt-8">
+                    <a href="https://instagram.com/mimi_baaij" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-forest/20 flex items-center justify-center text-forest hover:bg-forest hover:text-white transition-all group" aria-label="Mimi auf Instagram">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465 1.067-.047 1.407-.06 4.123-.06h.08v-.001zm0-2c-2.709 0-3.046.011-4.11.06-1.173.054-1.97.237-2.67.509a6.903 6.903 0 00-2.502 1.626 6.903 6.903 0 00-1.627 2.502c-.272.7-.455 1.497-.509 2.67-.049 1.064-.06 1.401-.06 4.11s.011 3.046.06 4.11c.054 1.173.237 1.97.509 2.67a6.903 6.903 0 001.627 2.502 6.903 6.903 0 002.502 1.626c.7.272 1.497.455 2.67.509 1.064.049 1.401.06 4.11.06s3.046-.011 4.11-.06c1.173-.054 1.97-.237 2.67-.509a6.903 6.903 0 00-1.627-2.502 6.903 6.903 0 00-2.502-1.626c-.7-.272-1.497-.455-2.67-.509-1.064-.049-1.401-.06-4.11-.06zM12.315 5.824a6.176 6.176 0 100 12.352 6.176 6.176 0 000-12.352zm0 10.352a4.176 4.176 0 110-8.352 4.176 4.176 0 010 8.352zm6.758-10.468a1.44 1.44 0 110 2.88 1.44 1.44 0 010-2.88z" clip-rule="evenodd" /></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Image Side -->
+            <div class="order-1 md:order-2">
+                <!-- 
+                    FIX: "h-80 md:h-96" entfernt (feste Höhe)
+                    NEU: "aspect-[3/4]" hinzugefügt (Portrait-Format)
+                    NEU: "object-center" statt "object-top" für bessere Zentrierung
+                -->
+                <div class="relative w-full aspect-[3/4] rounded-[100px] rounded-br-[20px] overflow-hidden shadow-soft reveal hover-zoom">
+                    <!-- HIER BILD AUSTAUSCHEN für GitHub Pages: src="images/mimi-portrait.jpg" -->
+                    <img src="images/mimi-portrait.jpg" 
+                         alt="Mimi Baaij" 
+                         class="img-cover object-center" 
+                         loading="lazy">
+                    <div class="absolute inset-0 bg-forest/5 mix-blend-multiply"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist / CTA Section -->
+    <section id="warteliste" class="relative z-10 py-20 px-6 text-center max-w-2xl mx-auto reveal">
+        <h2 class="font-serif text-4xl mb-6 text-forest">Bist du bereit für deinen <br><span class="font-script text-5xl">Soft Reset?</span></h2>
+        <p class="text-forest/70 mb-10">
+            Wir starten im Januar. Die Plätze für die begleitete Gruppe sind limitiert, um den Raum persönlich zu halten.
+            Trag dich jetzt unverbindlich ein, um als Erste alle Infos zu erhalten.
+        </p>
+
+        <!-- HTML Form with JavaScript Handler (Best Design + Data Control) -->
+        <div class="glass p-8 md:p-12 rounded-[2.5rem] shadow-card overflow-hidden text-left relative">
+            <div class="bg-white/50 border border-white rounded-3xl p-8 md:p-10 shadow-sm relative z-10">
+                <div class="flex items-center justify-between mb-8">
+                    <h3 class="font-serif text-2xl text-forest">Warteliste</h3>
+                    <span class="text-xs font-sans uppercase tracking-widest text-forest/40">Limited Slots</span>
+                </div>
+
+                <!-- Formular -->
+                <form id="resetForm" onsubmit="submitToGoogle(event)" class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-sans font-medium text-forest/70 uppercase tracking-wide">Dein Name</label>
+                        <input type="text" name="name" id="fieldName" required placeholder="Wie darf ich dich nennen?" class="w-full bg-paper border border-forest/10 rounded-xl px-4 py-3 focus:outline-none focus:border-forest/30 font-sans text-forest placeholder-forest/30 transition-all">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-sm font-sans font-medium text-forest/70 uppercase tracking-wide">Deine E-Mail</label>
+                        <input type="email" name="email" id="fieldEmail" required placeholder="Für die Einladung" class="w-full bg-paper border border-forest/10 rounded-xl px-4 py-3 focus:outline-none focus:border-forest/30 font-sans text-forest placeholder-forest/30 transition-all">
+                    </div>
+
+                    <div class="space-y-2">
+                         <label class="text-sm font-sans font-medium text-forest/70 uppercase tracking-wide">Deine Intention</label>
+                        <textarea rows="2" name="message" id="fieldMessage" placeholder="Was wünschst du dir für den Januar?" class="w-full bg-paper border border-forest/10 rounded-xl px-4 py-3 focus:outline-none focus:border-forest/30 font-sans text-forest placeholder-forest/30 transition-all"></textarea>
+                    </div>
+
+                    <button type="submit" id="submitButton" class="w-full bg-forest text-white font-medium py-4 rounded-xl hover:bg-forestLight transition-all shadow-lg mt-4 flex justify-center items-center gap-2 group">
+                        <span>Platz reservieren</span>
+                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+                </form>
+
+                <!-- Success Message (Hidden initially) -->
+                <div id="successMessage" class="hidden text-center py-10">
+                    <div class="w-16 h-16 bg-butter rounded-full flex items-center justify-center text-3xl mx-auto mb-4">✨</div>
+                    <h3 class="font-serif text-2xl text-forest mb-2">Du bist dabei!</h3>
+                    <p class="text-forest/70">Danke für dein Vertrauen. Ich melde mich bei dir, sobald es losgeht.</p>
+                </div>
+            </div>
+
+            <!-- Background Decor inside Form Card -->
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-butter/30 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+        
+        <p class="text-xs text-forest/40 mt-6 uppercase tracking-widest">100% Spam-frei. Nur gute Energie.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-12 text-center border-t border-forest/5 bg-paper">
+        <div class="font-serif italic text-xl text-forest mb-4">Miriam Baaij</div>
+        <p class="text-xs text-forest/40 uppercase tracking-widest mb-6">Online Business & Coaching &copy; 2025</p>
+        
+        <div class="flex justify-center gap-6 text-xs text-forest/50 uppercase tracking-widest font-sans">
+            <button onclick="openModal('impressumModal')" class="hover:text-forest transition-colors">Impressum</button>
+            <button onclick="openModal('datenschutzModal')" class="hover:text-forest transition-colors">Datenschutz</button>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="fixed bottom-0 left-0 w-full bg-paper/95 border-t border-forest/10 p-6 md:p-8 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-[999] hidden flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-md transform translate-y-full transition-transform duration-500">
+        <div class="text-sm text-forest/80 max-w-3xl">
+            <strong class="font-serif text-lg block mb-2 text-forest">Privatsphäre-Einstellungen</strong>
+            <p class="leading-relaxed">
+                Wir nutzen Cookies und externe Dienste (wie Google Fonts & Gemini AI), um dir ein schönes und funktionales Erlebnis zu bieten. 
+                Du kannst selbst entscheiden, ob du dem zustimmen möchtest. 
+                <button onclick="openModal('datenschutzModal')" class="underline hover:text-forest font-bold">Details ansehen</button>.
+            </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <button onclick="handleConsent('essential')" class="px-6 py-3 rounded-xl text-sm font-medium border border-forest/20 text-forest hover:bg-forest/5 transition-colors whitespace-nowrap">
+                Nur Essenzielle
+            </button>
+            <button onclick="handleConsent('all')" class="bg-forest text-white px-8 py-3 rounded-xl text-sm font-medium hover:bg-forestLight transition-colors shadow-lg whitespace-nowrap">
+                Alle akzeptieren
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL: Impressum -->
+    <div id="impressumModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-forest/20 backdrop-blur-sm" onclick="closeModal('impressumModal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl max-h-[80vh] overflow-y-auto bg-paper p-8 md:p-12 rounded-3xl shadow-soft border border-white">
+            <button onclick="closeModal('impressumModal')" class="absolute top-6 right-6 text-forest/40 hover:text-forest text-2xl">&times;</button>
+            <h3 class="font-serif text-3xl text-forest mb-6">Impressum</h3>
+            <div class="prose text-forest/70 font-sans text-sm space-y-4">
+                <p><strong>Angaben gemäß § 5 TMG</strong></p>
+                <p>
+                    Miriam Baaij - Online Business & Coaching<br>
+                    Einzelunternehmen<br>
+                    Reußensteinweg 3<br>
+                    71088 Holzgerlingen
+                </p>
+                <p><strong>Kontakt</strong></p>
+                <p>
+                    Telefon: +49 156 79749188<br>
+                    E-Mail: miriam@famspiration.com
+                </p>
+                <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</strong></p>
+                <p>
+                    Miriam Baaij<br>
+                    Reußensteinweg 3<br>
+                    71088 Holzgerlingen
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Datenschutz -->
+    <div id="datenschutzModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-forest/20 backdrop-blur-sm" onclick="closeModal('datenschutzModal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl max-h-[80vh] overflow-y-auto bg-paper p-8 md:p-12 rounded-3xl shadow-soft border border-white">
+            <button onclick="closeModal('datenschutzModal')" class="absolute top-6 right-6 text-forest/40 hover:text-forest text-2xl">&times;</button>
+            <h3 class="font-serif text-3xl text-forest mb-6">Datenschutzerklärung</h3>
+            <div class="prose text-forest/70 font-sans text-sm space-y-4">
+                <h4 class="font-bold text-forest">1. Datenschutz auf einen Blick</h4>
+                <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit deinen personenbezogenen Daten passiert, wenn du diese Website besuchst.</p>
+
+                <h4 class="font-bold text-forest mt-6">2. Hosting & Externe Dienste</h4>
+                <p>Wir hosten die Inhalte bei einem externen Anbieter. Wir nutzen Content Delivery Networks (CDN) für Schriftarten und Styles.</p>
+
+                <h4 class="font-bold text-forest mt-6">3. Verantwortliche Stelle</h4>
+                <p>Miriam Baaij - Online Business & Coaching<br>Reußensteinweg 3, 71088 Holzgerlingen<br>E-Mail: miriam@famspiration.com</p>
+
+                <h4 class="font-bold text-forest mt-6">4. Datenerfassung</h4>
+                <p><strong>Warteliste (via Google Apps Script):</strong> Die Daten aus dem Formular werden direkt an ein Google Script gesendet und in einer Google Tabelle (Google Ireland Limited) gespeichert. Dies dient der Verwaltung der Warteliste.</p>
+                <p><strong>Kontakt:</strong> Anfragen per Mail speichern wir zur Bearbeitung.</p>
+
+                <h4 class="font-bold text-forest mt-6">5. Tools</h4>
+                <p><strong>Google Fonts:</strong> Werden von Google Servern geladen.</p>
+                <p><strong>Gemini AI:</strong> Eingaben im Energie-Kompass werden temporär zur Erstellung der Antwort an Google gesendet.</p>
+                
+                <p class="text-xs text-forest/40 mt-8 italic">*Dies ist eine vereinfachte Erklärung.*</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- Reveal on Scroll Logic ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // --- Cookie Banner Logic ---
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('consentMode')) {
+                const banner = document.getElementById('cookieBanner');
+                if (banner) {
+                    banner.classList.remove('hidden');
+                    setTimeout(() => banner.classList.remove('translate-y-full'), 500);
+                }
+            }
+        });
+
+        function handleConsent(mode) {
+            localStorage.setItem('consentMode', mode);
+            const banner = document.getElementById('cookieBanner');
+            if (banner) {
+                banner.classList.add('translate-y-full');
+                setTimeout(() => banner.classList.add('hidden'), 500);
+            }
+        }
+
+        // --- Modal Logic ---
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal('impressumModal');
+                closeModal('datenschutzModal');
+            }
+        });
+
+        // --- FORM SUBMISSION LOGIC (Google Apps Script) ---
+        async function submitToGoogle(event) {
+            event.preventDefault(); 
+
+            const btn = document.getElementById('submitButton');
+            const form = document.getElementById('resetForm');
+            const successMsg = document.getElementById('successMessage');
+            
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Wird gesendet...';
+            btn.disabled = true;
+            btn.classList.add('opacity-70', 'cursor-wait');
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // ---------------------------------------------------------
+            // HIER DEINE GOOGLE APPS SCRIPT URL EINFÜGEN:
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyl4sfcjNEoiva3mzFwbq3VxBdhJF32X75xe9kam2tMxESOurzbf1ryGbbZ962nlTwu0w/exec"; 
+            // ---------------------------------------------------------
+
+            try {
+                // Wir senden im no-cors Modus an Google Apps Script
+                // ÄNDERUNG: Wir senden als text/plain, um CORS-Probleme zu minimieren
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    headers: { 'Content-Type': 'text/plain' }, 
+                    body: JSON.stringify(data)
+                });
+
+                // Erfolg anzeigen
+                form.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+                
+            } catch (error) {
+                console.error("Fehler beim Senden:", error);
+                alert("Huch! Da ist etwas schiefgelaufen. Bitte schreib mir kurz eine Mail an miriam@famspiration.com");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-70', 'cursor-wait');
+            }
+        }
+
+        // --- Gemini AI Logic (Standard + Fallback) ---
+        const fallbackRituals = [
+            {
+                mantra: "Ich atme Ruhe ein und lasse die Eile los.",
+                title: "Die Teetassen-Meditation",
+                steps: "1. Umschließe eine warme Tasse mit beiden Händen.\n2. Spüre die Wärme, die in deine Handflächen strömt.\n3. Atme dreimal tief in den Bauch, bevor du den ersten Schluck nimmst."
+            },
+            {
+                mantra: "Ich bin genau da, wo ich sein muss.",
+                title: "Der Boden-Check",
+                steps: "1. Stell beide Füße fest auf den Boden.\n2. Wackle mit den Zehen und spüre den Halt unter dir.\n3. Stell dir vor, wie Wurzeln tief in die Erde wachsen."
+            },
+            {
+                mantra: "Meine Energie gehört mir.",
+                title: "Die Licht-Dusche",
+                steps: "1. Schließe kurz die Augen.\n2. Stell dir vor, warmes, goldenes Licht fließt von oben durch deinen Körper.\n3. Atme aus und lass alle Anspannung mit der Luft entweichen."
+            }
+        ];
+
+        async function generateRitual() {
+            const userFeeling = document.getElementById('userFeeling').value;
+            const resultArea = document.getElementById('aiResult');
+            const spinner = document.getElementById('loadingSpinner');
+            const content = document.getElementById('resultContent');
+            const btn = document.getElementById('generateBtn');
+
+            const apiKey = ""; // API Key
+
+            if (!userFeeling) {
+                alert("Bitte verrate uns kurz, wie du dich fühlst.");
+                return;
+            }
+
+            resultArea.classList.remove('hidden');
+            spinner.classList.remove('hidden');
+            content.classList.add('hidden');
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            try {
+                if (!apiKey || apiKey === '""' || apiKey === "''") {
+                    throw new Error("No API Key available");
+                }
+
+                const prompt = `
+                    Act as a soulful, empathetic holistic health coach for exhausted mothers. 
+                    The user feels: "${userFeeling}".
+                    
+                    Generate a response in German in exactly this JSON format:
+                    {
+                        "mantra": "A short, poetic, strengthening affirmation/mantra (max 1 sentence)",
+                        "ritual_title": "A creative title for a 2-minute micro-ritual",
+                        "ritual_steps": "2-3 very simple, gentle steps to do right now (breathing, tea, stretching). Keep it extremely simple."
+                    }
+                    
+                    Keep the tone warm, grounding ("Warm Grounding"), and validating. No medical advice.
+                `;
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        generationConfig: { responseMimeType: "application/json" }
+                    })
+                });
+
+                if (!response.ok) throw new Error('API Error');
+
+                const data = await response.json();
+                const aiResponse = JSON.parse(data.candidates[0].content.parts[0].text);
+                
+                renderResult(aiResponse);
+
+            } catch (error) {
+                console.warn("Using fallback ritual due to:", error);
+                const fallback = fallbackRituals[Math.floor(Math.random() * fallbackRituals.length)];
+                fallback.isOffline = true;
+                setTimeout(() => {
+                    renderResult(fallback);
+                }, 1500);
+            }
+        }
+
+        function renderResult(data) {
+            const spinner = document.getElementById('loadingSpinner');
+            const content = document.getElementById('resultContent');
+            const btn = document.getElementById('generateBtn');
+
+            content.innerHTML = `
+                <div class="mb-6 text-center">
+                    <p class="text-xs uppercase tracking-widest text-forest/40 mb-2">Dein Mantra ${data.isOffline ? '(Offline-Modus)' : ''}</p>
+                    <h3 class="font-serif text-2xl md:text-3xl text-forest italic leading-tight">"${data.mantra}"</h3>
+                </div>
+                <div class="border-t border-forest/10 pt-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-8 h-8 rounded-full bg-butter flex items-center justify-center text-forest text-sm">🌿</span>
+                        <h4 class="font-sans font-bold text-forest text-lg">${data.ritual_title || data.title}</h4>
+                    </div>
+                    <p class="text-forest/80 leading-relaxed font-light whitespace-pre-line">${data.ritual_steps || data.steps}</p>
+                </div>
+            `;
+
+            spinner.classList.add('hidden');
+            content.classList.remove('hidden');
+            btn.disabled = false;
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+    </script>
 </body>
 </html>
